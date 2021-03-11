@@ -1,3 +1,5 @@
+import '@types/jquery';
+
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
 }
@@ -14,10 +16,12 @@ interface MwUri {
 }
 
 interface MwEventLog {
+	eventInSample( population: Object ): () => boolean;
 	inSample( num: Number ): () => boolean;
+	logEvent( schema: string, data: Object ): () => void;
 }
 
-type UriConstructor = new( uri: string ) => MwUri;
+type UriConstructor = new( uri: string, options?: Object ) => MwUri;
 
 interface mwHookInstance {
 	add( fn: Function ): () => void;
@@ -31,10 +35,31 @@ interface MwStorage {
 	session: MwStorageMap
 }
 
+interface MwUser {
+	id(): () => string;
+	getGroups( callback: Function ): () => jQuery.Deferred;
+	getId(): () => string;
+	getName(): () => string;
+	isAnon(): () => boolean;
+	generateRandomSessionId(): () => string;
+	sessionId(): () => string;
+}
+
+interface MwExperimentBucket {
+	name: string,
+	enabled: boolean,
+	buckets: Object
+}
+
+interface MwExperiments {
+	getBucket( bucket: MwExperimentBucket, token: string ): () => string
+}
+
 interface MediaWiki {
 	cookie: MwCookie,
 	storage: MwStorage,
 	eventLog: MwEventLog,
+	experiments: MwExperiments;
 	util: {
 		/**
 		 * @param {string} parameter name
@@ -114,6 +139,7 @@ interface MediaWiki {
 	 */
 	hook( hookname: string ): mwHookInstance;
 
+	requestIdleCallback( callback: Function ): () => void
 	/**
 	 * Get a hook
 	 *
@@ -129,7 +155,7 @@ interface MediaWiki {
 	 * @param [data] The data describing the event
 	 */
 	track(topic: string, data?: Record<string, unknown>|number|string): void;
-
+	user: MwUser;
 	Uri: UriConstructor;
 }
 
