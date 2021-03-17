@@ -1,5 +1,3 @@
-import '@types/jquery';
-
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
 }
