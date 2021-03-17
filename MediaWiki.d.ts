@@ -36,23 +36,23 @@ interface MwStorage {
 }
 
 interface MwUser {
-	id(): () => string;
-	getGroups( callback: Function ): () => jQuery.Deferred;
-	getId(): () => string;
-	getName(): () => string;
-	isAnon(): () => boolean;
-	generateRandomSessionId(): () => string;
-	sessionId(): () => string;
+	id(): string;
+	getGroups( callback: Function ): JQuery.Promise<any>;
+	getId(): string;
+	getName(): string;
+	isAnon(): boolean;
+	generateRandomSessionId(): string;
+	sessionId(): string;
 }
 
 interface MwExperimentBucket {
 	name: string,
 	enabled: boolean,
-	buckets: Object
+	buckets: Record<'A'|'B'|'control', Number>
 }
 
 interface MwExperiments {
-	getBucket( bucket: MwExperimentBucket, token: string ): () => string
+	getBucket( bucket: MwExperimentBucket, token: string ): string;
 }
 
 interface MediaWiki {
@@ -64,20 +64,20 @@ interface MediaWiki {
 		/**
 		 * @param {string} parameter name
 		 */
-		getParamValue( param: string ): () => string;
+		getParamValue( param: string ): string
 		/**
 		 * @param {string} id of portlet
 		 */
-		showPortlet( id: string ): () => void;
+		showPortlet( id: string ): string;
 		/**
 		 * @param {string} id of portlet
 		 */
-		hidePortlet( id: string ): () => void;
+		hidePortlet( id: string ): void;
 		/**
 		 * @param {string} id of portlet
 		 * @return {bool}
 		 */
-		isPortletVisible( id: string ): () => boolean,
+		isPortletVisible( id: string ): boolean,
 		/**
 		 * Return a wrapper function that is debounced for the given duration.
 		 *
@@ -139,13 +139,18 @@ interface MediaWiki {
 	 */
 	hook( hookname: string ): mwHookInstance;
 
+	/**
+	 * Get current timestamp
+	 */
+	now(): number,
+
 	requestIdleCallback( callback: Function ): () => void
 	/**
 	 * Get a hook
 	 *
 	 * @param event
 	 */
-	trackSubscribe( event: string, handler: Function ): () => void;
+	trackSubscribe( event: string, handler: ( topic: string, data: object ) => void ): () => void;
 	/**
 	 * Track an analytic event.
 	 *
