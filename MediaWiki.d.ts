@@ -56,7 +56,7 @@ interface MwExperiments {
 interface MediaWiki {
 	cookie: MwCookie,
 	storage: MwStorage,
-	eventLog: MwEventLog,
+	eventLog?: MwEventLog,
 	experiments: MwExperiments;
 	util: {
 		/**
