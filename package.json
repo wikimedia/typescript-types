@@ -1,12 +1,15 @@
 {
-  "name": "@wikimedia/types-wikimedia",
-  "author": "Wikimedia",
-  "version": "0.1.2",
-  "description": "TypeScript definitions for MediaWiki",
-  "main": "",
-  "types": "index.d.ts",
-  "scripts": {},
-  "devDependencies": {
-    "@types/jquery": "3.5.5"
-  }
+	"name": "@wikimedia/types-wikimedia",
+	"author": "Wikimedia",
+	"version": "0.1.2",
+	"description": "TypeScript definitions for MediaWiki",
+	"main": "",
+	"types": "index.d.ts",
+	"scripts": {
+		"lint": "eslint --cache ."
+	},
+	"devDependencies": {
+		"@types/jquery": "3.5.5",
+		"eslint-config-wikimedia": "0.19.0"
+	}
 }

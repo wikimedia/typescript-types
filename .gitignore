@@ -1,0 +1,5 @@
+# Building & testing
+/node_modules
+
+# Misc
+.eslintcache
