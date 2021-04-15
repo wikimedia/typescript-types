@@ -9,6 +9,8 @@ interface MwCookie {
 }
 
 interface MwUri {
+  extend(parameters: object): object;
+  new (uri?: Object|string, options?: Object|boolean): MwUri;
 	query: Record<string, unknown>;
 	toString(): string;
 }
@@ -25,6 +27,8 @@ interface mwHookInstance {
 	add( fn: Function ): () => void;
 }
 
+interface MwMessage {}
+
 interface MwStorageMap {
 	get( key: string ): () => string;
 }
@@ -34,6 +38,10 @@ interface MwStorage {
 }
 
 interface MwUser {
+	config: {
+		get( configKey: string|null, fallback?: any|null ): string;
+		set( configKey: string|null, value: any|null ): void;
+	},
 	id(): string;
 	getGroups( callback: Function ): JQuery.Promise<any>;
 	getId(): string;
@@ -63,6 +71,12 @@ interface MediaWiki {
 		 * @param {string} parameter name
 		 */
 		getParamValue( param: string ): string
+		/**
+		 *
+		 * @param pageName
+		 * @param params
+		 */
+    getUrl(pageName?: string, params?: Object): string;
 		/**
 		 * @param {string} id of portlet
 		 */
@@ -99,33 +113,33 @@ interface MediaWiki {
 	loader: {
 		/**
 		 * Execute a function after one or more modules are ready.
-		 * 
-		 * @param moduleName 
+		 *
+		 * @param moduleName
 		 * @param {Function} ready Callback to execute when all dependencies are
 		 * ready.
 		 * @param {Function} after Callback to execute if one or more dependencies
 		 * failed.
 		 */
 		using( moduleName: string|null, ready?: Function, error?: Function ): JQuery.Promise<any>;
-		
+
 		/**
 		 * Load a given resourceLoader module.
-		 * 
-		 * @param moduleName 
+		 *
+		 * @param moduleName
 		 */
-		 load( moduleName: string|null ): () => void;
+		load( moduleName: string|null ): () => void;
 		/**
-		 * Get the loading state of the module. 
+		 * Get the loading state of the module.
 		 * On of 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'.
-		 * 
-		 * @param moduleName 
+		 *
+		 * @param moduleName
 		 */
-		getState( moduleName: string|null ): string; 
-	}, 
+		getState( moduleName: string|null ): string;
+	},
 	/**
-	 * Loads the specified i18n message string. 
+	 * Loads the specified i18n message string.
 	 * Shortcut for `mw.message( key, parameters... ).text()`.
-	 * 
+	 *
 	 * @param messageName i18n message name
 	 */
 	msg( messageName: string|null ): string;
@@ -136,6 +150,15 @@ interface MediaWiki {
 	 * @param hookname
 	 */
 	hook( hookname: string ): mwHookInstance;
+	/**
+	 * @see mw.notification#notify
+	 * @param {HTMLElement|HTMLElement[]|jQuery|MwMessage|string} message
+	 * @param {Object} [options] See mw.notification#defaults for the defaults.
+	 * @return {jQuery.Promise}
+	 */
+	notify(
+    message: HTMLElement | HTMLElement[] | JQuery | MwMessage | string, options?: Object
+  ): JQuery.Promise<any>;
 
 	/**
 	 * Get current timestamp
