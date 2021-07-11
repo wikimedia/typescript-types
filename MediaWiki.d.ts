@@ -9,8 +9,8 @@ interface MwCookie {
 }
 
 interface MwUri {
-  extend(parameters: object): object;
-  new (uri?: Object|string, options?: Object|boolean): MwUri;
+	extend(parameters: object): object;
+	new (uri?: Object|string, options?: Object|boolean): MwUri;
 	query: Record<string, unknown>;
 	toString(): string;
 }
@@ -76,7 +76,7 @@ interface MediaWiki {
 		 * @param pageName
 		 * @param params
 		 */
-    getUrl(pageName?: string, params?: Object): string;
+	getUrl(pageName?: string, params?: Object): string;
 		/**
 		 * @param {string} id of portlet
 		 */
@@ -157,8 +157,8 @@ interface MediaWiki {
 	 * @return {jQuery.Promise}
 	 */
 	notify(
-    message: HTMLElement | HTMLElement[] | JQuery | MwMessage | string, options?: Object
-  ): JQuery.Promise<any>;
+		message: HTMLElement | HTMLElement[] | JQuery | MwMessage | string, options?: Object
+	): JQuery.Promise<any>;
 
 	/**
 	 * Get current timestamp
