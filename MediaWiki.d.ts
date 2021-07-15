@@ -44,7 +44,7 @@ interface MwUser {
 	},
 	id(): string;
 	getGroups( callback: Function ): JQuery.Promise<any>;
-	getId(): string;
+	getId(): Number;
 	getName(): string;
 	isAnon(): boolean;
 	generateRandomSessionId(): string;
