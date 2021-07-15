@@ -38,7 +38,7 @@ interface MwStorage {
 }
 
 interface MwUser {
-	config: {
+	options: {
 		get( configKey: string|null, fallback?: any|null ): string;
 		set( configKey: string|null, value: any|null ): void;
 	},
