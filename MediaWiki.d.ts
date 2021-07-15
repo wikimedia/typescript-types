@@ -72,11 +72,10 @@ interface MediaWiki {
 		 */
 		getParamValue( param: string ): string
 		/**
-		 *
 		 * @param pageName
 		 * @param params
 		 */
-	getUrl(pageName?: string, params?: Object): string;
+		getUrl(pageName?: string, params?: Object): string;
 		/**
 		 * @param {string} id of portlet
 		 */
