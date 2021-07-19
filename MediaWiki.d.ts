@@ -2,6 +2,12 @@ interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
 }
 
+interface MwTitle {
+	getUrl(): string
+}
+
+type MwTitleConstructor = new( title: string, namespace?: number ) => MwTitle;
+
 type MwApiConstructor = new( options?: Object ) => MwApi;
 
 interface MwCookie {
@@ -164,7 +170,9 @@ interface MediaWiki {
 	 */
 	now(): number,
 
-	requestIdleCallback( callback: Function ): () => void
+	requestIdleCallback( callback: Function ): () => void,
+
+	Title: MwTitleConstructor,
 	/**
 	 * Get a hook
 	 *
