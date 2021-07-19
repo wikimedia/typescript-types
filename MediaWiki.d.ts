@@ -149,7 +149,7 @@ interface MediaWiki {
 	 *
 	 * @param messageName i18n message name
 	 */
-	msg( messageName: string|null ): string;
+	msg( messageName: string|null, ...args: any[] ): string;
 
 	/**
 	 * Get a hook
