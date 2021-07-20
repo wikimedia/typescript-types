@@ -3,7 +3,7 @@ interface MwApi {
 }
 
 interface MwTitle {
-	getUrl(): string
+	getUrl( params?: Object ): string
 }
 
 type MwTitleConstructor = new( title: string, namespace?: number ) => MwTitle;
@@ -170,9 +170,8 @@ interface MediaWiki {
 	 */
 	now(): number,
 
-	requestIdleCallback( callback: Function ): () => void,
+	requestIdleCallback( callback: Function ): () => void
 
-	Title: MwTitleConstructor,
 	/**
 	 * Get a hook
 	 *
@@ -188,6 +187,7 @@ interface MediaWiki {
 	 * @param [data] The data describing the event
 	 */
 	track(topic: string, data?: Record<string, unknown>|number|string): void;
+	Title: MwTitleConstructor;
 	user: MwUser;
 	Uri: UriConstructor;
 }
