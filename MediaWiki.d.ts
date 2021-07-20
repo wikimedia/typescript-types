@@ -1,7 +1,7 @@
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
-	get( params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
-	postWithToken( token: string, params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
+	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
+	postWithToken( tokenType: string, params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
 }
 
 type MwApiConstructor = new( options?: Object ) => MwApi;
