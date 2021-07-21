@@ -4,6 +4,12 @@ interface MwApi {
 	postWithToken( tokenType: string, params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
 }
 
+interface MwTitle {
+	getUrl( params?: Object ): string
+}
+
+type MwTitleConstructor = new( title: string, namespace?: number ) => MwTitle;
+
 type MwApiConstructor = new( options?: Object ) => MwApi;
 
 interface MwCookie {
@@ -167,6 +173,7 @@ interface MediaWiki {
 	now(): number,
 
 	requestIdleCallback( callback: Function ): () => void
+
 	/**
 	 * Get a hook
 	 *
@@ -182,6 +189,7 @@ interface MediaWiki {
 	 * @param [data] The data describing the event
 	 */
 	track(topic: string, data?: Record<string, unknown>|number|string): void;
+	Title: MwTitleConstructor;
 	user: MwUser;
 	Uri: UriConstructor;
 }
