@@ -72,7 +72,7 @@ interface MwMap {
 }
 interface MediaWiki {
 	cookie: MwCookie,
-	Map, MwMap,
+	Map: MwMap,
 	storage: MwStorage,
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
@@ -172,7 +172,7 @@ interface MediaWiki {
 	 */
 	now(): number,
 
-	requestIdleCallback( callback: Function ): () => void
+	requestIdleCallback( callback: Function ): () => void;
 
 	/**
 	 * Get a hook
