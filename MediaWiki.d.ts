@@ -72,6 +72,7 @@ interface MwMap {
 }
 interface MediaWiki {
 	cookie: MwCookie,
+	Map, MwMap,
 	storage: MwStorage,
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
