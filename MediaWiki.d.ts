@@ -148,6 +148,7 @@ interface MediaWiki {
 	 * Shortcut for `mw.message( key, parameters... ).text()`.
 	 *
 	 * @param messageName i18n message name
+	 * @param {...any} args arguments to message.
 	 */
 	msg( messageName: string|null, ...args: any[] ): string;
 
