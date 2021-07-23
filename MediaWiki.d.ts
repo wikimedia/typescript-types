@@ -46,10 +46,7 @@ interface MwStorage {
 }
 
 interface MwUser {
-	options: {
-		get( configKey: string|null, fallback?: any|null ): string;
-		set( configKey: string|null, value: any|null ): void;
-	},
+	options: MwMap,
 	id(): string;
 	getGroups( callback: Function ): JQuery.Promise<any>;
 	getId(): Number;
@@ -69,8 +66,13 @@ interface MwExperiments {
 	getBucket( bucket: MwExperimentBucket, token: string ): string;
 }
 
+interface MwMap {
+	get( configKey: string|null, fallback?: any|null ): any;
+	set( configKey: string|null, value: any|null ): void;
+}
 interface MediaWiki {
 	cookie: MwCookie,
+	Map, MwMap,
 	storage: MwStorage,
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
@@ -113,10 +115,7 @@ interface MediaWiki {
 		debounce(delay: number, callback: Function): () => void;
 	};
 	Api: MwApiConstructor;
-	config: {
-		get( configKey: string|null, fallback?: any|null ): string;
-		set( configKey: string|null, value: any|null ): void;
-	},
+	config: MwMap,
 	loader: {
 		/**
 		 * Execute a function after one or more modules are ready.
