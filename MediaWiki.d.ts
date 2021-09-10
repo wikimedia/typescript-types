@@ -5,6 +5,8 @@ interface MwApi {
 }
 
 interface MwTitle {
+	getPrefixedText(): string
+	getTalkPage(): MwTitle|null
 	getUrl( params?: Object ): string
 }
 
