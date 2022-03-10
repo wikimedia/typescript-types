@@ -1,3 +1,5 @@
+/// <reference path="MwEcho.d.ts" />
+
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
 	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
@@ -76,6 +78,7 @@ interface MediaWiki {
 	cookie: MwCookie,
 	Map: MwMap,
 	storage: MwStorage,
+	echo?: MwEcho,
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
 	util: {
