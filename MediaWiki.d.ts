@@ -37,7 +37,36 @@ interface mwHookInstance {
 	add( fn: Function ): () => void;
 }
 
-interface MwMessage {}
+interface MwMessage {
+	/**
+	 * Parse the wikitext message into HTML.
+	 * Requires jqueryMsg to be useful.
+	 */
+	parse(): string;
+	/**
+	 * Return the message as plain text.
+	 */
+	plain(): string;
+	/**
+	 * Format the message with text transformations.
+	 * Requires jqueryMsg to be useful.
+	 */
+	text(): string;
+	/**
+	 * text(), HTML-escaped.
+	 */
+	escaped(): string;
+	/**
+	 * Whether the message exists (is loaded) or not.
+	 */
+	exists(): boolean;
+}
+
+/**
+ * Possible MwMessage parameter types.
+ * HTMLElement and JQuery require jqueryMsg.
+ */
+type MwMessageParam = string | number | HTMLElement | JQuery;
 
 interface MwStorageMap {
 	get( key: string ): () => string;
@@ -144,14 +173,23 @@ interface MediaWiki {
 		 */
 		getState( moduleName: string|null ): string;
 	},
+
 	/**
-	 * Loads the specified i18n message string.
-	 * Shortcut for `mw.message( key, parameters... ).text()`.
+	 * Formats the specified i18n message.
 	 *
-	 * @param messageName i18n message name
-	 * @param {...any} args arguments to message.
+	 * @param key i18n message name
+	 * @param parameters message arguments
 	 */
-	msg( messageName: string|null, ...args: any[] ): string;
+	message( key: string, ...parameters: MwMessageParam[] ): MwMessage;
+
+	/**
+	 * Formats the specified i18n message string.
+	 * Shortcut for `mw.message( key, ...parameters ).text()`.
+	 *
+	 * @param key i18n message name
+	 * @param parameters message arguments
+	 */
+	msg( key: string, ...parameters: MwMessageParam[] ): string;
 
 	/**
 	 * Get a hook
