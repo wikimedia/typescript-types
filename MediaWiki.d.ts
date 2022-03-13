@@ -114,7 +114,7 @@ interface MediaWiki {
 		/**
 		 * @param {string} parameter name
 		 */
-		getParamValue( param: string ): string
+		getParamValue( param: string ): string;
 		/**
 		 * @param pageName
 		 * @param params
@@ -130,23 +130,42 @@ interface MediaWiki {
 		hidePortlet( id: string ): void;
 		/**
 		 * @param {string} id of portlet
-		 * @return {bool}
+		 * @return {boolean}
 		 */
 		isPortletVisible( id: string ): boolean,
 		/**
-		 * Return a wrapper function that is debounced for the given duration.
+		 * Return a function, that, as long as it continues to be invoked, will not
+		 * be triggered. The function will be called after it stops being called for
+		 * N milliseconds. If `immediate` is passed, trigger the function on the
+		 * leading edge, instead of the trailing.
 		 *
-		 * When it is first called, a timeout is scheduled. If before the timer
-		 * is reached the wrapper is called again, it gets rescheduled for the
-		 * same duration from now until it stops being called. The original function
-		 * is called from the "tail" of such chain, with the last set of arguments.
+		 * Ported from Underscore.js 1.5.2, Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud
+		 * and Investigative Reporters & Editors, distributed under the MIT license, from
+		 * <https://github.com/jashkenas/underscore/blob/1.5.2/underscore.js#L689>.
 		 *
 		 * @since 1.34
-		 * @param {number} delay Time in milliseconds
-		 * @param {Function} callback
-		 * @return {Function}
+		 * @param {Function} func Function to debounce
+		 * @param {number} [wait=0] Wait period in milliseconds
+		 * @param {boolean} [immediate] Trigger on leading edge
+		 * @return {Function} Debounced function
 		 */
-		debounce(delay: number, callback: Function): () => void;
+		debounce(callback: Function, delay?: number, immediate?: boolean): () => void;
+		/**
+		 * Return a function, that, when invoked, will only be triggered at most once
+		 * during a given window of time. If called again during that window, it will
+		 * wait until the window ends and then trigger itself again.
+		 *
+		 * As it's not knowable to the caller whether the function will actually run
+		 * when the wrapper is called, return values from the function are entirely
+		 * discarded.
+		 *
+		 * Ported from OOUI.
+		 *
+		 * @param {Function} func Function to throttle
+		 * @param {number} wait Throttle window length, in milliseconds
+		 * @return {Function} Throttled function
+		 */
+		throttle(func: Function, wait: number): () => void;
 	};
 	Api: MwApiConstructor;
 	config: MwMap,
