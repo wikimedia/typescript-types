@@ -11,6 +11,6 @@
 	},
 	"devDependencies": {
 		"@types/jquery": "3.5.5",
-		"eslint-config-wikimedia": "0.19.0"
+		"eslint-config-wikimedia": "0.22.1"
 	}
 }
