@@ -7,10 +7,14 @@
 	"repository": "github:wikimedia/typescript-types",
 	"types": "index.d.ts",
 	"scripts": {
-		"lint": "eslint --cache ."
+		"test": "eslint --cache ."
 	},
 	"devDependencies": {
 		"@types/jquery": "3.5.5",
-		"eslint-config-wikimedia": "0.22.1"
+		"@typescript-eslint/eslint-plugin": "5.14.0",
+		"@typescript-eslint/parser": "5.14.0",
+		"eslint": "8.11.0",
+		"eslint-config-wikimedia": "0.22.1",
+		"typescript": "4.6.2"
 	}
 }
