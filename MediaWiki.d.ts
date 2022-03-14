@@ -21,15 +21,15 @@ interface MwCookie {
 }
 
 interface MwUri {
-	extend(parameters: object): object;
-	new (uri?: Object|string, options?: Object|boolean): MwUri;
+	extend( parameters: object ): object;
+	new ( uri?: Object|string, options?: Object|boolean ): MwUri;
 	query: Record<string, unknown>;
 	toString(): string;
 }
 
 interface MwEventLog {
 	eventInSample( population: Object ): () => boolean;
-	inSample( num: Number ): () => boolean;
+	inSample( num: number ): () => boolean;
 	logEvent( schema: string, data: Object ): () => void;
 }
 
@@ -82,7 +82,7 @@ interface MwUser {
 	options: MwMap,
 	id(): string;
 	getGroups( callback: Function ): JQuery.Promise<any>;
-	getId(): Number;
+	getId(): number;
 	getName(): string;
 	isAnon(): boolean;
 	generateRandomSessionId(): string;
@@ -92,7 +92,7 @@ interface MwUser {
 interface MwExperimentBucket {
 	name: string,
 	enabled: boolean,
-	buckets: Record<'A'|'B'|'control', Number>
+	buckets: Record<'A'|'B'|'control', number>
 }
 
 interface MwExperiments {
@@ -119,7 +119,7 @@ interface MediaWiki {
 		 * @param pageName
 		 * @param params
 		 */
-		getUrl(pageName?: string, params?: Object): string;
+		getUrl( pageName?: string, params?: Object ): string;
 		/**
 		 * @param {string} id of portlet
 		 */
@@ -146,7 +146,7 @@ interface MediaWiki {
 		 * @param {Function} callback
 		 * @return {Function}
 		 */
-		debounce(delay: number, callback: Function): () => void;
+		debounce( delay: number, callback: Function ): () => void;
 	};
 	Api: MwApiConstructor;
 	config: MwMap,
@@ -231,7 +231,7 @@ interface MediaWiki {
 	 * @param topic The topic name
 	 * @param [data] The data describing the event
 	 */
-	track(topic: string, data?: Record<string, unknown>|number|string): void;
+	track( topic: string, data?: Record<string, unknown>|number|string ): void;
 	Title: MwTitleConstructor;
 	user: MwUser;
 	Uri: UriConstructor;

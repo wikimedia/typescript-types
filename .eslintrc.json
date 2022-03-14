@@ -2,5 +2,20 @@
 	"root": true,
 	"extends": [
 		"wikimedia/server"
+	],
+	"overrides": [
+		{
+			"files": [ "**/*.ts" ],
+			"parser": "@typescript-eslint/parser",
+			"extends": "plugin:@typescript-eslint/recommended",
+			"plugins": [
+				"@typescript-eslint"
+			],
+			"rules": {
+				"no-use-before-define": [ "error", { "functions": false, "classes": false, "variables": true } ],
+				"@typescript-eslint/ban-types": "warn",
+				"@typescript-eslint/no-empty-interface": "warn"
+			}
+		}
 	]
 }
