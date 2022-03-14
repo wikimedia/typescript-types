@@ -149,7 +149,7 @@ interface MediaWiki {
 		 * @param {boolean} [immediate] Trigger on leading edge
 		 * @return {Function} Debounced function
 		 */
-		debounce(callback: Function, delay?: number, immediate?: boolean): () => void;
+		debounce( callback: Function, delay?: number, immediate?: boolean ): () => void;
 		/**
 		 * Return a function, that, when invoked, will only be triggered at most once
 		 * during a given window of time. If called again during that window, it will
@@ -165,7 +165,7 @@ interface MediaWiki {
 		 * @param {number} wait Throttle window length, in milliseconds
 		 * @return {Function} Throttled function
 		 */
-		throttle(func: Function, wait: number): () => void;
+		throttle( func: Function, wait: number ): () => void;
 	};
 	Api: MwApiConstructor;
 	config: MwMap,
