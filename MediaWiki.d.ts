@@ -37,6 +37,7 @@ type UriConstructor = new( uri: string, options?: Object ) => MwUri;
 
 interface mwHookInstance {
 	add( fn: Function ): () => void;
+	fire( fn: Function ): () => void;
 }
 
 interface MwMessage {
