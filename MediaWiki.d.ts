@@ -37,7 +37,12 @@ type UriConstructor = new( uri: string, options?: Object ) => MwUri;
 
 interface mwHookInstance {
 	add( fn: Function ): () => void;
-	fire( fn: Function ): () => void;
+	/**
+	 * Fire an event for logging.
+	 *
+	 * @param [data] The data describing the event
+	 */
+	fire( data?: Record<string, unknown>|number|string ): void;
 }
 
 interface MwMessage {
