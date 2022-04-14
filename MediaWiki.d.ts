@@ -1,8 +1,60 @@
 /// <reference path="MwEcho.d.ts" />
 
+interface MwApiActionQuery {
+	action: string
+	formatversion?: number
+	origin?: string
+	prop?: string
+	continue?: string
+	uselang?: string
+	// When sourced from wikitext
+	titles?: string[]
+	// local descriptions
+	ppprop?: string
+	// PageImages
+	pilimit?: number
+	piprop?: string
+	pithumbsize?: number
+	// When using TextExtracts
+	exsentences?: string
+	exintro?: string
+	explaintext?: string
+	// Cirrus Search
+	generator?: string
+	maxage?: number
+	smaxage?: number
+	gsrqiprofile?: string
+	gsrlimit?: number
+	gsrnamespace?: string
+	gsrsearch?: string
+}
+
+interface MwApiQueryResponse {
+	query: {
+		pages: MwApiPageObject[]
+	}
+}
+interface MwApiPagePropsObject {
+	description: string
+}
+
+interface MwApiThumbnailObject {
+	width: number
+	height: number
+	source: string
+}
+
+interface MwApiPageObject {
+	title: string
+	description?: string
+	extract?: string
+	thumbnail?: MwApiThumbnailObject
+	pageprops?: MwApiPagePropsObject
+}
+
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
-	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
+	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<MwApiQueryResponse|any>;
 	postWithToken( tokenType: string, params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
 }
 
