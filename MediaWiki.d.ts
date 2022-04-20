@@ -237,7 +237,7 @@ interface MediaWiki {
 		 * @param {Function} after Callback to execute if one or more dependencies
 		 * failed.
 		 */
-		using( moduleName: string|string[]|null, ready?: Function, error?: Function ): JQuery.Promise<any>;
+		using( moduleName: string|string[]|null, ready?: Function, error?: Function ): JQuery.Promise<Function>;
 
 		/**
 		 * Load a given resourceLoader module.
