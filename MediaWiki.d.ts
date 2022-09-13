@@ -88,7 +88,7 @@ interface MwEventLog {
 type UriConstructor = new( uri: string, options?: Object ) => MwUri;
 
 interface mwHookInstance {
-	add( fn: Function ): () => void;
+	add( fn: Function ): this;
 	/**
 	 * Fire an event for logging.
 	 *
