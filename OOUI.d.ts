@@ -9,4 +9,8 @@ interface OoUiWidget extends OoUiElement, OoEventEmitter {}
 
 interface OoUiButtonWidget extends OoUiWidget {}
 
-interface OoUiPopupWidget extends OoUiWidget {}
+interface OoUiPopupWidget extends OoUiWidget {
+	constructor( options: Object );
+}
+
+type OoUiPopupWidgetConstructor = new( options?: Object ) => OoUiPopupWidget;

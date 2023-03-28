@@ -52,6 +52,18 @@ interface MwApiPageObject {
 	pageprops?: MwApiPagePropsObject
 }
 
+interface MwTemplateRenderer {
+	render( data: Object, partials: Object ): JQuery;
+}
+
+interface MwTemplateCompiler {
+	compile( templateStr: string ): MwTemplateRenderer;
+}
+
+interface MwTemplate {
+	getCompiler( compilerName: string ): MwTemplateCompiler;
+}
+
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
 	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<MwApiQueryResponse|any>;
@@ -68,8 +80,19 @@ type MwTitleConstructor = new( title: string, namespace?: number ) => MwTitle;
 
 type MwApiConstructor = new( options?: Object ) => MwApi;
 
+interface MwCookieOptions {
+	expires?: Date|number|null;
+	prefix?: string;
+	domain?: string;
+	path?: string;
+	secure?: boolean;
+	sameSite?: string;
+	sameSiteLegacy?: boolean;
+}
+
 interface MwCookie {
 	get( cookieName: string ): () => string
+	set( cookieName: string, value: string|null, options?: MwCookieOptions ): () => void;
 }
 
 interface MwUri {
@@ -87,14 +110,16 @@ interface MwEventLog {
 
 type UriConstructor = new( uri: string, options?: Object ) => MwUri;
 
+type mwHookFunction = {
+	( ...args: any[] ): void;
+};
+
 interface mwHookInstance {
-	add( fn: Function ): this;
+	add( fn: mwHookFunction ): this;
 	/**
 	 * Fire an event for logging.
-	 *
-	 * @param [data] The data describing the event
 	 */
-	fire( data?: any ): void;
+	fire( ...args: any[] ): this;
 }
 
 interface MwMessage {
@@ -147,10 +172,14 @@ interface MwUser {
 	sessionId(): string;
 }
 
+interface MwLogger {
+	warn( ...args: any[] ): void;
+}
+
 interface MwExperimentBucket {
 	name: string,
 	enabled: boolean,
-	buckets: Record<'A'|'B'|'control', number>
+	buckets: Record<string, number>
 }
 
 interface MwExperiments {
@@ -168,7 +197,12 @@ interface MediaWiki {
 	echo?: MwEcho,
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
+	log: MwLogger;
 	util: {
+		/**
+		 * @param {string} [hash] Hash fragment, without the leading '#'.
+		 */
+		getTargetFromFragment( hash?: string ): HTMLElement|null;
 		/**
 		 * @param {string} parameter name
 		 */
@@ -315,6 +349,7 @@ interface MediaWiki {
 
 	requestIdleCallback( callback: Function ): () => void;
 
+	template: MwTemplate;
 	/**
 	 * Get a hook
 	 *

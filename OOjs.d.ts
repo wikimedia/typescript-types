@@ -10,9 +10,10 @@ interface OoEventEmitter {
 }
 
 interface OOjs {
-	ui?: {
+	ui: {
 		infuse( idOrNode: string|HTMLElement|JQuery, config?: Object ): OoUiElement;
 		confirm( text: JQuery|string, options?: object ): JQuery.Promise<any>;
+		PopupWidget: OoUiPopupWidgetConstructor;
 	};
 }
 
