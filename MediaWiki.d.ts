@@ -179,6 +179,27 @@ interface MediaWiki {
 		 */
 		getUrl( pageName?: string, params?: Object ): string;
 		/**
+ 		 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
+ 		 * @param {string} href Link URL
+ 		 * @param {string} text Link text
+ 		 * @param {string} [id] ID of the list item, should be unique and preferably have
+ 		 *  the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
+ 		 * @param {string} [tooltip] Text to show when hovering over the link, without accesskey suffix
+ 		 * @param {string} [accesskey] Access key to activate this link. One character only,
+ 		 *  avoid conflicts with other links. Use `$( '[accesskey=x]' )` in the console to
+ 		 *  see if 'x' is already used.
+ 		 * @param {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
+ 		 *  Must be another item in the same list, it will be ignored otherwise.
+ 		 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
+ 		 * @fires util_addPortletLink
+ 		 * @return {HTMLElement|null} The added list item, or null if no element was added.
+		 */
+		addPortletLink(
+			portletId: string, href: string, text: string,
+			id?: string, tooltip?: string, accesskey?: string,
+			nextnode?: HTMLElement|jQuery|string
+		): HTMLElement|null;
+		/**
 		 * @param {string} id of portlet
 		 */
 		showPortlet( id: string ): string;
