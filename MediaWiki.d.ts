@@ -230,8 +230,8 @@ interface MediaWiki {
 		 */
 		addPortletLink(
 			portletId: string, href: string, text: string,
-			id?: string, tooltip?: string, accesskey?: string,
-			nextnode?: HTMLElement|jQuery|string
+			id?: string|null, tooltip?: string|null, accesskey?: string|null,
+			nextnode?: HTMLElement|JQuery|string|null
 		): HTMLElement|null;
 		/**
 		 * @param {string} id of portlet
