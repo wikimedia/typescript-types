@@ -190,6 +190,10 @@ interface MediaWiki {
 	log: MwLogger;
 	util: {
 		/**
+		 * @param {string} selector
+		 */
+		getTargetFromFragment( selector: string ): HTMLElement|null;
+		/**
 		 * @param {string} parameter name
 		 */
 		getParamValue( param: string ): string;
