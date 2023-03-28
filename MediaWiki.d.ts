@@ -70,6 +70,7 @@ type MwApiConstructor = new( options?: Object ) => MwApi;
 
 interface MwCookie {
 	get( cookieName: string ): () => string
+	set( cookieName: string, value: string|null ): () => void;
 }
 
 interface MwUri {
