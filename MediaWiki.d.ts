@@ -52,6 +52,18 @@ interface MwApiPageObject {
 	pageprops?: MwApiPagePropsObject
 }
 
+interface MwTemplateRenderer {
+	render( data: Object, partials: Object ): JQuery;
+}
+
+interface MwTemplateCompiler {
+	compile( templateStr: string ): MwTemplateRenderer;
+}
+
+interface MwTemplate {
+	getCompiler( compilerName: string ): MwTemplateCompiler;
+}
+
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
 	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<MwApiQueryResponse|any>;
@@ -321,6 +333,7 @@ interface MediaWiki {
 
 	requestIdleCallback( callback: Function ): () => void;
 
+	template: MwTemplate;
 	/**
 	 * Get a hook
 	 *
