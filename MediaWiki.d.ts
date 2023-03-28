@@ -100,14 +100,16 @@ interface MwEventLog {
 
 type UriConstructor = new( uri: string, options?: Object ) => MwUri;
 
+type mwHookFunction = {
+	( ...args: any[] ): void;
+};
+
 interface mwHookInstance {
-	add( fn: Function ): this;
+	add( fn:  mwHookFunction ): this;
 	/**
 	 * Fire an event for logging.
-	 *
-	 * @param [data] The data describing the event
 	 */
-	fire( data?: any ): void;
+	fire( ...args: any[] ): void;
 }
 
 interface MwMessage {
