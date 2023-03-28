@@ -148,6 +148,10 @@ interface MwUser {
 	sessionId(): string;
 }
 
+interface MwLogger {
+	warn( ...args: any[] ): void;
+}
+
 interface MwExperimentBucket {
 	name: string,
 	enabled: boolean,
@@ -169,6 +173,7 @@ interface MediaWiki {
 	echo?: MwEcho,
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
+	log: MwLogger;
 	util: {
 		/**
 		 * @param {string} parameter name
