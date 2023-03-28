@@ -80,9 +80,19 @@ type MwTitleConstructor = new( title: string, namespace?: number ) => MwTitle;
 
 type MwApiConstructor = new( options?: Object ) => MwApi;
 
+interface MwCookieOptions {
+	expires?: Date|number|null;
+	prefix?: string;
+	domain?: string;
+	path?: string;
+	secure?: boolean;
+	sameSite?: string;
+	sameSiteLegacy?: boolean;
+}
+
 interface MwCookie {
 	get( cookieName: string ): () => string
-	set( cookieName: string, value: string|null ): () => void;
+	set( cookieName: string, value: string|null, options?: MwCookieOptions ): () => void;
 }
 
 interface MwUri {
@@ -109,7 +119,7 @@ interface mwHookInstance {
 	/**
 	 * Fire an event for logging.
 	 */
-	fire( ...args: any[] ): void;
+	fire( ...args: any[] ): this;
 }
 
 interface MwMessage {
@@ -176,6 +186,7 @@ interface MwExperiments {
 	getBucket( bucket: MwExperimentBucket, token: string ): string;
 }
 
+
 interface MwMap {
 	get( configKey: string|null, fallback?: any|null ): any;
 	set( configKey: string|null, value: any|null ): void;
@@ -190,9 +201,9 @@ interface MediaWiki {
 	log: MwLogger;
 	util: {
 		/**
-		 * @param {string} selector
+		 * @param {string} [hash] Hash fragment, without the leading '#'.
 		 */
-		getTargetFromFragment( selector: string ): HTMLElement|null;
+		getTargetFromFragment( hash?: string ): HTMLElement|null;
 		/**
 		 * @param {string} parameter name
 		 */
