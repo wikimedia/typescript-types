@@ -115,7 +115,7 @@ type mwHookFunction = {
 };
 
 interface mwHookInstance {
-	add( fn:  mwHookFunction ): this;
+	add( fn: mwHookFunction ): this;
 	/**
 	 * Fire an event for logging.
 	 */
@@ -185,7 +185,6 @@ interface MwExperimentBucket {
 interface MwExperiments {
 	getBucket( bucket: MwExperimentBucket, token: string ): string;
 }
-
 
 interface MwMap {
 	get( configKey: string|null, fallback?: any|null ): any;
