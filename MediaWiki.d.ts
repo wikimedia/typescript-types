@@ -169,7 +169,7 @@ interface MwLogger {
 interface MwExperimentBucket {
 	name: string,
 	enabled: boolean,
-	buckets: Record<'A'|'B'|'control', number>
+	buckets: Record<string, number>
 }
 
 interface MwExperiments {
