@@ -91,8 +91,8 @@ interface MwCookieOptions {
 }
 
 interface MwCookie {
-	get( cookieName: string ): () => string
-	set( cookieName: string, value: string|null, options?: MwCookieOptions ): () => void;
+	get( cookieName: string ): string|null
+	set( cookieName: string, value: string|null, options?: MwCookieOptions ): void;
 }
 
 interface MwUri {
@@ -103,9 +103,9 @@ interface MwUri {
 }
 
 interface MwEventLog {
-	eventInSample( population: Object ): () => boolean;
-	inSample( num: number ): () => boolean;
-	logEvent( schema: string, data: Object ): () => void;
+	eventInSample( population: Object ): boolean;
+	inSample( num: number ): boolean;
+	logEvent( schema: string, data: Object ): void;
 }
 
 type UriConstructor = new( uri: string, options?: Object ) => MwUri;
@@ -154,7 +154,7 @@ interface MwMessage {
 type MwMessageParam = string | number | HTMLElement | JQuery;
 
 interface MwStorageMap {
-	get( key: string ): () => string;
+	get( key: string ): string;
 }
 
 interface MwStorage {
@@ -299,7 +299,7 @@ interface MediaWiki {
 		 *
 		 * @param moduleName
 		 */
-		load( moduleName: string|null ): () => void;
+		load( moduleName: string|null ): void;
 		/**
 		 * Get the loading state of the module.
 		 * On of 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'.
@@ -347,7 +347,7 @@ interface MediaWiki {
 	 */
 	now(): number,
 
-	requestIdleCallback( callback: Function ): () => void;
+	requestIdleCallback( callback: Function ): number|void;
 
 	template: MwTemplate;
 	/**
@@ -355,7 +355,7 @@ interface MediaWiki {
 	 *
 	 * @param event
 	 */
-	trackSubscribe( event: string, handler: ( topic: string, data: object ) => void ): () => void;
+	trackSubscribe( event: string, handler: ( topic: string, data: object ) => void ): void;
 	/**
 	 * Track an analytic event.
 	 *
