@@ -170,6 +170,8 @@ interface MwUser {
 	isAnon(): boolean;
 	generateRandomSessionId(): string;
 	sessionId(): string;
+	isNamed(): boolean;
+	isTemp(): boolean;
 }
 
 interface MwLogger {
