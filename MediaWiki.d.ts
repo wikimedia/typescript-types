@@ -155,10 +155,13 @@ type MwMessageParam = string | number | HTMLElement | JQuery;
 
 interface MwStorageMap {
 	get( key: string ): string;
+	set( key: string, value: string, expiry: number ): boolean;
 }
 
 interface MwStorage {
-	session: MwStorageMap
+	session: MwStorageMap;
+	get( key: string ): string;
+	set( key: string, value: string, expiry: number ): boolean;
 }
 
 interface MwUser {
