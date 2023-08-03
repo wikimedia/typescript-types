@@ -163,7 +163,7 @@ interface MwStorage {
 
 interface MwClientPrefs {
 	get( key: string ): string|boolean;
-	set( key: string , value: string): boolean;
+	set( key: string, value: string ): boolean;
 }
 
 interface MwUser {
