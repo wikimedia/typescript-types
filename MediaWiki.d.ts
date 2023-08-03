@@ -161,6 +161,11 @@ interface MwStorage {
 	session: MwStorageMap
 }
 
+interface MwClientPrefs {
+	get( key: string ): string|boolean;
+	set( key: string , value: string): boolean;
+}
+
 interface MwUser {
 	options: MwMap,
 	id(): string;
@@ -172,6 +177,7 @@ interface MwUser {
 	sessionId(): string;
 	isNamed(): boolean;
 	isTemp(): boolean;
+	clientPrefs: MwClientPrefs;
 }
 
 interface MwLogger {
