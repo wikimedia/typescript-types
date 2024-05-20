@@ -198,6 +198,7 @@ interface MwMap {
 	get( configKey: string|null, fallback?: any|null ): any;
 	set( configKey: string|null, value: any|null ): void;
 }
+
 interface MediaWiki {
 	cookie: MwCookie,
 	Map: MwMap,
@@ -207,6 +208,11 @@ interface MediaWiki {
 	experiments: MwExperiments;
 	log: MwLogger;
 	util: {
+		/**
+		 * @param {string} expiry
+		 * @return {boolean}
+		 */
+		isInfinity( expiry: string ): boolean;
 		/**
 		 * @param {string} [hash] Hash fragment, without the leading '#'.
 		 */
