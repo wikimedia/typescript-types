@@ -130,6 +130,11 @@ interface MwMessage {
 	 */
 	parse(): string;
 	/**
+	 * Parse the message to DOM nodes, rather than HTML string
+	 * This method is only available when jqueryMsg is loaded
+	 */
+	parseDom(): JQuery;
+	/**
 	 * Return the message as plain text.
 	 */
 	plain(): string;
