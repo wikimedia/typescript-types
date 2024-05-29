@@ -66,6 +66,7 @@ interface MwTemplate {
 
 interface MwApi {
 	saveOption( name: string, value: unknown ): JQuery.Promise<any>;
+	saveOptions( options: Object ): JQuery.Promise<any>;
 	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<MwApiQueryResponse|any>;
 	postWithToken( tokenType: string, params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
 }
