@@ -190,6 +190,10 @@ interface MwLogger {
 	warn( ...args: any[] ): void;
 }
 
+interface MwErrorLogger {
+	logError( error: Error, topic?: string ): void;
+}
+
 interface MwExperimentBucket {
 	name: string,
 	enabled: boolean,
@@ -213,6 +217,7 @@ interface MediaWiki {
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
 	log: MwLogger;
+	errorLogger: MwErrorLogger;
 	util: {
 		/**
 		 * @param {string} expiry
