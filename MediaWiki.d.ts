@@ -384,12 +384,12 @@ interface MediaWiki {
 	/**
 	 * Track an analytic event.
 	 *
-	 * See https://gerrit.wikimedia.org/g/mediawiki/core/+/d7fe1ff0fe52735b1f41e91879c9617b376e807d/resources/src/mediawiki.base/mediawiki.base.js#375.
+	 * See https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/core/+/124790a806226662cf9e197516b511d85fcf138b/resources/src/mediawiki.base/mediawiki.base.js#367
 	 *
 	 * @param topic The topic name
-	 * @param [data] The data describing the event
+	 * @param {...Object|number|string} [data] Data describing the event.
 	 */
-	track( topic: string, data?: Record<string, unknown>|number|string ): void;
+	track( topic: string, ...data: ( Record<string, unknown>|number|string )[] ): void;
 	Title: MwTitleConstructor;
 	user: MwUser;
 	Uri: UriConstructor;
