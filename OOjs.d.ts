@@ -12,6 +12,7 @@ interface OoEventEmitter {
 interface OOjs {
 	ui: {
 		infuse( idOrNode: string|HTMLElement|JQuery, config?: Object ): OoUiElement;
+		isMobile(): boolean;
 		confirm( text: JQuery|string, options?: object ): JQuery.Promise<any>;
 		PopupWidget: OoUiPopupWidgetConstructor;
 	};
