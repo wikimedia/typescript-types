@@ -204,6 +204,14 @@ interface MwExperiments {
 	getBucket( bucket: MwExperimentBucket, token: string ): string;
 }
 
+interface MwHtmlRaw {}
+
+interface MwHtml {
+	escape( s: string ): string;
+	element( name: string, attrs?: object, contents?: string|MwHtmlRaw|null ): string;
+	Raw: new( value: string ) => MwHtmlRaw;
+}
+
 interface MwMap {
 	get( configKey: string|null, fallback?: any|null ): any;
 	set( configKey: string|null, value: any|null ): void;
@@ -216,6 +224,7 @@ interface MediaWiki {
 	echo?: MwEcho,
 	eventLog?: MwEventLog,
 	experiments: MwExperiments;
+	html: MwHtml;
 	log: MwLogger;
 	errorLogger: MwErrorLogger;
 	util: {
