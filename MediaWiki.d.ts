@@ -1,4 +1,5 @@
 /// <reference path="MwEcho.d.ts" />
+/// <reference path="MwTestKitchen.d.ts" />
 
 interface MwApiActionQuery {
 	action: string
@@ -223,6 +224,7 @@ interface MediaWiki {
 	storage: MwStorage,
 	echo?: MwEcho,
 	eventLog?: MwEventLog,
+	testKitchen: MwTestKitchen;
 	experiments: MwExperiments;
 	html: MwHtml;
 	log: MwLogger;
