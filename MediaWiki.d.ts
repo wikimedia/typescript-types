@@ -163,12 +163,13 @@ interface MwMessage {
  */
 type MwMessageParam = string | number | HTMLElement | JQuery;
 
-interface MwStorageMap {
-	get( key: string ): string;
+interface MwStorage extends MwSafeStorage {
+    session: MwSafeStorage;
 }
 
-interface MwStorage {
-	session: MwStorageMap
+interface MwSafeStorage {
+    get( key: string ): string;
+    set( key: string, value: string, expiry?: number ): boolean;
 }
 
 interface MwClientPrefs {
