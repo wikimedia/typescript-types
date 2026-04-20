@@ -47,6 +47,9 @@ interface MwApiThumbnailObject {
 
 interface MwApiPageObject {
 	title: string
+	fullurl?: string
+	editurl?: string
+	canonicalurl?: string
 	description?: string
 	extract?: string
 	thumbnail?: MwApiThumbnailObject
