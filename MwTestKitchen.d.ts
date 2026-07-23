@@ -1,5 +1,5 @@
 interface TestKitchenExperiment {
-	getAssignedGroup(): ?string;
+	getAssignedGroup(): string|null;
 	isAssignedGroup( ...groups: string[] ): boolean;
 	send(
 		action: string,
