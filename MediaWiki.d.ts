@@ -405,7 +405,7 @@ interface MediaWiki {
 	 * @param topic The topic name
 	 * @param {...Object|number|string} [data] Data describing the event.
 	 */
-	track( topic: string, ...data: ( Record<string, unknown>|number|string )[] ): void;
+	track( topic: string, ...data: ( object|number|string )[] ): void;
 	Title: MwTitleConstructor;
 	user: MwUser;
 	Uri: UriConstructor;
