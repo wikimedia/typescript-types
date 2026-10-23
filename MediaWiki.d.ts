@@ -30,13 +30,24 @@ interface MwApiActionQuery {
 	gsrsearch?: string
 }
 
+interface MwApiRedirect {
+	from: string
+	to: string
+}
+
 interface MwApiQueryResponse {
 	query: {
+		redirects:  MwApiRedirect[]
+		normalized: MwApiRedirect[]
 		pages: MwApiPageObject[]
 	}
 }
 interface MwApiPagePropsObject {
 	description: string
+}
+
+interface MwNotification {
+	close(): void;
 }
 
 interface MwApiThumbnailObject {
@@ -46,6 +57,9 @@ interface MwApiThumbnailObject {
 }
 
 interface MwApiPageObject {
+	id?: number
+	missing?: boolean
+	pageid?: number
 	title: string
 	fullurl?: string
 	editurl?: string
@@ -74,6 +88,7 @@ interface MwApi {
 	get( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<MwApiQueryResponse|any>;
 	post( parameters: Object, ajaxOptions?: Object ): JQuery.Promise<MwApiQueryResponse|any>;
 	postWithToken( tokenType: string, params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
+	postWithEditToken( params: Object, ajaxOptions?: Object ): JQuery.Promise<any>;
 }
 
 interface MwTitle {
@@ -169,6 +184,7 @@ interface MwStorage extends MwSafeStorage {
 }
 
 interface MwSafeStorage {
+    remove( key: string ): void;
     get( key: string ): string;
     set( key: string, value: string, expiry?: number ): boolean;
 }
@@ -193,6 +209,7 @@ interface MwUser {
 }
 
 interface MwLogger {
+	error( ...args: any[] ): void;
 	warn( ...args: any[] ): void;
 }
 
@@ -235,6 +252,16 @@ interface MediaWiki {
 	log: MwLogger;
 	errorLogger: MwErrorLogger;
 	util: {
+		/**
+		 * @param {string}
+		 * @return {string}
+		 */
+		wikiUrlencode( link: string ): string;
+		/**
+		 * @param {string}
+		 * @return {string}
+		 */
+		escapeIdForLink( link: string ): string;
 		/**
 		 * @param {string} expiry
 		 * @return {boolean}
@@ -377,11 +404,11 @@ interface MediaWiki {
 	 * @see mw.notification#notify
 	 * @param {HTMLElement|HTMLElement[]|jQuery|MwMessage|string} message
 	 * @param {Object} [options] See mw.notification#defaults for the defaults.
-	 * @return {jQuery.Promise}
+	 * @return {MwNotification}
 	 */
 	notify(
 		message: HTMLElement | HTMLElement[] | JQuery | MwMessage | string, options?: Object
-	): JQuery.Promise<any>;
+	): JQuery.Promise<MwNotification>;
 
 	/**
 	 * Get current timestamp
