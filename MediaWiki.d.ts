@@ -1,5 +1,6 @@
 /// <reference path="MwEcho.d.ts" />
 /// <reference path="MwTestKitchen.d.ts" />
+/// <reference path="mediawiki.storage.d.ts" />
 
 interface MwApiActionQuery {
 	action: string
@@ -178,16 +179,6 @@ interface MwMessage {
  * HTMLElement and JQuery require jqueryMsg.
  */
 type MwMessageParam = string | number | HTMLElement | JQuery;
-
-interface MwStorage extends MwSafeStorage {
-    session: MwSafeStorage;
-}
-
-interface MwSafeStorage {
-    remove( key: string ): void;
-    get( key: string ): string;
-    set( key: string, value: string, expiry?: number ): boolean;
-}
 
 interface MwClientPrefs {
 	get( key: string ): string|boolean;
