@@ -38,7 +38,7 @@ interface MwApiRedirect {
 
 interface MwApiQueryResponse {
 	query: {
-		redirects:  MwApiRedirect[]
+		redirects: MwApiRedirect[]
 		normalized: MwApiRedirect[]
 		pages: MwApiPageObject[]
 	}

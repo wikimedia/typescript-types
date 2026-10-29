@@ -25,7 +25,7 @@ interface UnsampledInstrument {
 interface MwTestKitchen {
 	clearExperimentOverride: ( experimentName: string ) => void;
 	clearExperimentOverrides(): void;
-	getAssignments(): Record<string,string>;
+	getAssignments(): Record<string, string>;
 	overrideExperimentGroup: ( experimentName: string, groupName: string ) => void;
 	getExperiment: ( experimentName: string ) => TestKitchenExperiment;
 	getExperimentsByPrefix: ( experimentNamePrefix: string ) => TestKitchenExperiment[];

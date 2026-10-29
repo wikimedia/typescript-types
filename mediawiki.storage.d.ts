@@ -9,7 +9,6 @@ interface MwStorage extends MwSafeStorage {
 	store: MwSafeStorage;
 }
 
-
 declare module 'mediawiki.storage' {
 	const storage: MwStorage;
 	export = storage;
