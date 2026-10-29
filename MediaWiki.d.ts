@@ -367,6 +367,10 @@ interface MediaWiki {
 		 * @param moduleName
 		 */
 		getState( moduleName: string|null ): string;
+		/**
+		 * Get the names of all registered ResourceLoader modules.
+		 */
+		getModuleNames(): string[];
 	},
 
 	/**
