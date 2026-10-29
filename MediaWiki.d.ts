@@ -237,6 +237,7 @@ interface MediaWiki {
 	storage: MwStorage,
 	echo?: MwEcho,
 	eventLog?: MwEventLog,
+	tk: MwTestKitchen;
 	testKitchen: MwTestKitchen;
 	experiments: MwExperiments;
 	html: MwHtml;
